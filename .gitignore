@@ -1,3 +1,4 @@
 Pipfile
 db.sqlite3
 Pipfile.lock
+*eg.py
