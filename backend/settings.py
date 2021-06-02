@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     
     #local
     'todos.apps.TodosConfig',
+
+    #3-rd parthy
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
