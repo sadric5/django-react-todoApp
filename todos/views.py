@@ -7,8 +7,12 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
+from django.contrib.auth.models import User
 
 # Create your views here.
+def addAuthor(data):
+        for todo in data:
+            todo['author']= User.objects.get(id=todo['author']).username
 
 def home(request):
     # print(request.session)
@@ -26,14 +30,20 @@ class TodoLists(generics.ListCreateAPIView):
     queryset = Todo.objects.all()
 
 class TodoList(APIView):
+    
     def get(self, request, completions):
         if completions.lower()=='true':
             todoComplete = Todo.objects.all().filter(completed = True)
             data = TodoSerializer(todoComplete, many = True).data
+            #add the author name
+            addAuthor(data)
+
             return Response(data)
-        elif completions.lower()=='False':
+        elif completions.lower()=='false':
             todoComplete = Todo.objects.all().filter(completed = False)
             data = TodoSerializer(todoComplete, many = True).data
+            #adding the author name
+            addAuthor(data)
             return Response(data)
         else:
             raise Http404("Bad request!")
