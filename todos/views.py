@@ -29,6 +29,15 @@ class TodoLists(generics.ListCreateAPIView):
     serializer_class = TodoSerializer
     queryset = Todo.objects.all()
 
+class AllTaks(APIView):
+    def get(self,request):
+        allTaks = Todo.objects.all()
+        data = TodoSerializer(allTaks, many = True).data
+        addAuthor(data)
+        return Response(data)
+    # def post(self, request):
+    #     print(self.request)
+
 class TodoList(APIView):
     
     def get(self, request, completions):
