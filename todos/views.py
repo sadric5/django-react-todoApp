@@ -36,7 +36,7 @@ class AllTaks(APIView):
         addAuthor(data)
         return Response(data)
     # def post(self, request):
-    #     print(self.request)
+    #     print(request)
 
 class TodoList(APIView):
     
