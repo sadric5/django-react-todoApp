@@ -10,6 +10,13 @@ from django.http import Http404
 from django.contrib.auth.models import User
 
 # Create your views here.
+
+class TaskUpdateDelete(generics.RetrieveUpdateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+
 def addAuthor(data):
         for todo in data:
             todo['author']= User.objects.get(id=todo['author']).username
