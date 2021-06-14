@@ -48,14 +48,14 @@ class AllTaks(APIView):
 class TodoList(APIView):
     
     def get(self, request, completions):
-        if completions.lower()=='true':
+        if completions.lower()=='completed':
             todoComplete = Todo.objects.all().filter(completed = True)
             data = TodoSerializer(todoComplete, many = True).data
             #add the author name
             addAuthor(data)
 
             return Response(data)
-        elif completions.lower()=='false':
+        elif completions.lower()=='incompleted':
             todoComplete = Todo.objects.all().filter(completed = False)
             data = TodoSerializer(todoComplete, many = True).data
             #adding the author name
