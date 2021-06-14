@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-class TaskUpdateDelete(generics.RetrieveUpdateAPIView):
+class TaskUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
