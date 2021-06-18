@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import Todo
 from django.contrib.auth.models import User
+from .testinsApiEndpoint import *
 # Create your tests here.
 
 class TodoTestCase(TestCase):
@@ -18,3 +19,4 @@ class TodoTestCase(TestCase):
 
     def test_todo_completed(self):
         self.assertEqual(self.todo.completed, True)
+
